@@ -1,6 +1,7 @@
 from airbnbapi import api
 from flask_restful import Resource, reqparse
 from flask import jsonify
+from . import controllers
 
 class Hello(Resource):
     def get(self):
@@ -33,7 +34,7 @@ class ListingsAPI(Resource):
         parser.add_argument('page')
         parser.add_argument('search_type')
         args = parser.parse_args(strict=True)
-        return args
+        return controllers.get_listings(args)
 
 
 # adding the defined resources along with their corresponding urls
