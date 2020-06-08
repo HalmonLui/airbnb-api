@@ -30,9 +30,9 @@ class ListingsAPI(Resource):
         parser.add_argument('state', required=True)
         parser.add_argument('checkin')
         parser.add_argument('checkout')
-        parser.add_argument('adults')
-        parser.add_argument('page')
-        parser.add_argument('search_type')
+        parser.add_argument('adults', default='1')
+        parser.add_argument('page', default='0')
+        parser.add_argument('search_type', default='pagination')
         args = parser.parse_args(strict=True)
         return controllers.get_listings(args)
 
