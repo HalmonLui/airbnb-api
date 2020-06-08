@@ -1,28 +1,10 @@
 import json, requests, pprint
+from . import helpers
 from bs4 import BeautifulSoup
 
 def get_listings(args):
     # Build the URL
-    baseurl = 'https://www.airbnb.com/s/homes?'
-
-    # Add pagination
-    if 'search_type' in args and args['search_type']:
-        URL = baseurl + 'search_type=' + search_type
-        if  args['search_type'] == 'pagination' and 'page' in args and args['page']:
-            items_offset = str(int(args['page']) * 20)
-            URL = URL + '&items_offset=' + items_offset
-
-    # Add location, these are required fields
-    query = args['city'] + '%2C%20' + args['state']
-    URL = URL + '&query=' + query
-
-    # Add logistics
-    if 'checkin' in args and args['checkin'] and 'checkout' in args and args['checkout']:
-        URL = URL + '&checkin=' + args['checkin'] + '&checkout=' + args['checkout']
-
-    # Add adults, there is default='1' but check just for safety
-    if 'adults' in args and args['adults']:
-        URL = URL + '&adults=' + args['adults']
+    URL = helpers.build_get_listings_url(args)
 
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -67,6 +49,7 @@ def get_listings(args):
             # Some have a discounted price so we only want the actual price per night
             price_per_night = text.rsplit('$', 1)[1]
             price_per_night = price_per_night.replace(' / night', '')
+            price_per_night = ' '.join(price_per_night.split())
 
             # Gets amenities like Wifi/Kitching/Free Parking
             amenities = span.parent.parent.parent.previous_sibling.get_text()
@@ -100,4 +83,4 @@ def get_listings(args):
             listings[counter]['num_reviews'] = num_reviews
             counter += 1
 
-    return {'results': listings}, 200
+    return listings, 200
