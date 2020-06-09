@@ -31,18 +31,18 @@ Warning: Using this application may be against Airbnb's terms of services.
 
 ### Parameters
 
-  **city** required\
-    Valid city, ex: Boston\
-  **state** required\
+  **city** *required*\
+  Valid city, ex: Boston\
+  **state** *required*\
     Valid state code, ex: MA\
-  **checkin** optional\
+  **checkin** *optional*\
     Checkin date, YYYY-MM-DD\
-  **checkout** optional\
+  **checkout** *optional*\
     Checkout date, YYYY-MM-DD\
-  **adults** optional, default is 1\
+  **adults** *optional, default is 1*\
     Number of adults\
-  **page** optional, default is 0\
-    Each page shows 20 items at a time\
+  **page** *optional, default is 0*\
+    Each page shows 20 items at a time
 
 ### Response
 ```json
