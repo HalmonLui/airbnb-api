@@ -24,24 +24,24 @@ Warning: Using this application may be against Airbnb's terms of services.
 
 ### Request
 
-GET /getListings
+`GET /getListings`
 
     curl -X GET 'http://localhost:5000/getListings?city=Boston&state=MA'
 
 ### Parameters
 
-    - **city** required
-      Valid city, ex: Boston
-    - **state** required
-      Valid state code, ex: MA
-    - **checkin** optional
-      Checkin date, YYYY-MM-DD
-    - **checkout** optional
-      Checkout date, YYYY-MM-DD
-    - **adults** optional, default is 1
-      Number of adults
-    - **page** optional, default is 0
-      Each page shows 20 items at a time
+  - **city** required
+    Valid city, ex: Boston
+  - **state** required
+    Valid state code, ex: MA
+  - **checkin** optional
+    Checkin date, YYYY-MM-DD
+  - **checkout** optional
+    Checkout date, YYYY-MM-DD
+  - **adults** optional, default is 1
+    Number of adults
+  - **page** optional, default is 0
+    Each page shows 20 items at a time
 
 ### Response
 ```json
