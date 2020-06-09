@@ -29,7 +29,7 @@ Warning: Using this application may be against Airbnb's terms of services.
     curl -X GET 'http://localhost:5000/getListings?city=Boston&state=MA'
 
 ### Response
-`
+```json
   [
       {
           "listing_name": "Super Spacious Listing For My Airbnb API",
@@ -72,7 +72,7 @@ Warning: Using this application may be against Airbnb's terms of services.
       },
       ...
   ]
-`
+```
 
 ## Get Deep Listings
 
