@@ -24,15 +24,13 @@ Warning: Using this application may be against Airbnb's terms of services.
 
 ### Request
 
-```
-GET /getListings
-```
+`GET /getListings`
 
     curl -X GET 'http://localhost:5000/getListings?city=Boston&state=MA'
 
 ### Parameters
 
-    __city__ required
+    *city* required
     Valid city, ex: Boston
     **state** required
     Valid state code, ex: MA
