@@ -30,7 +30,7 @@ Warning: Using this application may be against Airbnb's terms of services.
 
 ### Parameters
 
-    **city** required
+    __city__ required
     Valid city, ex: Boston
     **state** required
     Valid state code, ex: MA
