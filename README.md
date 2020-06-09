@@ -91,7 +91,7 @@ Warning: Using this application may be against Airbnb's terms of services.
 ```
 
 ## Get Deep Listings
-
+In progress...
 ### Request
 
 `Get /getDeepListings/`
@@ -102,7 +102,7 @@ Warning: Using this application may be against Airbnb's terms of services.
 
 
 ## Get Specific Listing
-
+In progress...
 ### Request
 
 `GET /getListing/<id>`
