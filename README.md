@@ -13,6 +13,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     cd airbnb-api
     pip -r requirements.txt
 
+    For neighborhood endpoint, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how
+
 ## Run the app
 
     export FLASK_APP=airbnbapi
@@ -94,7 +96,7 @@ Warning: Using this application may be against Airbnb's terms of services.
 In progress...
 ### Request
 
-`Get /getDeepListings/`
+`Get /getDeepListings`
 
     curl -X GET 'http://localhost:5000/getListings?city=Boston&state=MA'
 
@@ -110,3 +112,44 @@ In progress...
     curl -X GET 'http://localhost:5000/getListing?id=123456'
 
 ### Response
+
+## Get Neighborhoods
+### Request
+
+`GET /getNeighborhoods`
+
+    curl -X GET 'http://localhost:5000/getNeighborhoods?city=Boston&state=MA'
+
+### Parameters
+
+  - **city** *required*\
+  Valid city, ex: Boston
+  - **state** *required*\
+    Valid state code, ex: MA
+
+### Response
+```json
+  [
+    {
+      "neighborhood": "Allston-Brighton",
+      "neighborhood_id": "578"
+    },
+    {
+      "neighborhood": "East Boston",
+      "neighborhood_id": "579"
+    },
+    {
+      "neighborhood": "Winthrop",
+      "neighborhood_id": "580"
+    },
+    {
+      "neighborhood": "Theater District",
+      "neighborhood_id": "453"
+    },
+    {
+      "neighborhood": "Cambridge",
+      "neighborhood_id": "581"
+    },
+    ...
+  ]
+```

@@ -1,4 +1,4 @@
-def build_get_listings_url(args):
+def build_url(args):
     baseurl = 'https://www.airbnb.com/s/homes?'
 
     # Add pagination

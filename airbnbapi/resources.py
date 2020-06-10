@@ -36,8 +36,18 @@ class ListingsAPI(Resource):
         args = parser.parse_args(strict=True)
         return controllers.get_listings(args)
 
+# Get Neighborhoods and IDs
+class NeighborhoodsAPI(Resource):
+    def get(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('city', required=True)
+        parser.add_argument('state', required=True)
+        args = parser.parse_args(strict=True)
+        return controllers.get_neighborhoods(args)
+
 
 # adding the defined resources along with their corresponding urls
 api.add_resource(Hello, '/')
 # api.add_resource(Square, '/square/<int:num>')
 api.add_resource(ListingsAPI, '/getListings')
+api.add_resource(NeighborhoodsApi, '/getNeighborhoods')
