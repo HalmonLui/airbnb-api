@@ -50,4 +50,4 @@ class NeighborhoodsAPI(Resource):
 api.add_resource(Hello, '/')
 # api.add_resource(Square, '/square/<int:num>')
 api.add_resource(ListingsAPI, '/getListings')
-api.add_resource(NeighborhoodsApi, '/getNeighborhoods')
+api.add_resource(NeighborhoodsAPI, '/getNeighborhoods')

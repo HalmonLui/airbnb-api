@@ -7,6 +7,7 @@ from . import helpers
 def get_listings(args):
     # Build the URL
     URL = helpers.build_url(args)
+    print('URL', URL, flush=True)
 
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -44,9 +45,9 @@ def get_listings(args):
             amenities = []
             housing_info = []
             is_superhost = 'False'
-            listing_type = ''
+            listing_type = None
             rating = None
-            num_reviews = '0'
+            num_reviews = None
 
             # Some have a discounted price so we only want the actual price per night
             price_per_night = text.rsplit('$', 1)[1]
@@ -54,27 +55,33 @@ def get_listings(args):
             price_per_night = ' '.join(price_per_night.split())
 
             # Gets amenities like Wifi/Kitching/Free Parking
-            amenities = span.parent.parent.parent.previous_sibling.get_text()
-            amenities = amenities.split(' · ')
+            amenities_element = span.parent.parent.parent.previous_sibling
+            if amenities_element:
+                amenities = amenities_element.get_text()
+                amenities = amenities.split(' · ')
 
             # Gets gusts, bedrooms, baths
-            housing_info = span.parent.parent.parent.previous_sibling.previous_sibling.get_text()
-            housing_info = housing_info.split(' · ')
+            housing_info_element = span.parent.parent.parent.previous_sibling.previous_sibling
+            if housing_info_element:
+                housing_info = housing_info_element.get_text()
+                housing_info = housing_info.split(' · ')
 
             # Gets is_superhost, listing_type, rating, and num_reviews
-            listing_info = span.parent.parent.parent.previous_sibling.previous_sibling.previous_sibling.previous_sibling.children
-            for child in listing_info:
-                child_text = child.get_text()
-                if 'Entire ' in child_text or 'Private ' in child_text:
-                    listing_type = child_text
-                elif 'SUPERHOST' in child_text:
-                    is_superhost = 'True'
-                elif '(' and ')' in child_text:
-                    for c in child:
-                        split_rating = c.get_text().split()
-                        rating = split_rating[0]
-                        num_reviews = split_rating[1].replace('(', '')
-                        num_reviews = num_reviews.replace(')', '')
+            # listing_info = span.parent.parent.parent.previous_sibling.previous_sibling.previous_sibling.previous_sibling.children
+            listing_info = None
+            if listing_info:
+                for child in listing_info:
+                    child_text = child.get_text()
+                    if 'Entire ' in child_text or 'Private ' in child_text:
+                        listing_type = child_text
+                    elif 'SUPERHOST' in child_text:
+                        is_superhost = 'True'
+                    elif '(' and ')' in child_text:
+                        for c in child:
+                            split_rating = c.get_text().split()
+                            rating = split_rating[0]
+                            num_reviews = split_rating[1].replace('(', '')
+                            num_reviews = num_reviews.replace(')', '')
 
             listings[counter]['price_per_night'] = price_per_night
             listings[counter]['amenities'] = amenities
