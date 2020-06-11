@@ -49,6 +49,12 @@ Warning: Using this application may be against Airbnb's terms of services.
     Minimum price per night
   - **max_price** *optional, int*\
     Maximum price per night
+  - **min_beds** *optional, int*\
+    Minimum number of beds
+  - **min_bedrooms** *optional, int*\
+    Minimum number of bedrooms
+  - **min_bathrooms** *optional, int*\
+    Minimum number of bathrooms
   - **flexible_cancellation** *optional, bool*\
     Stay has flexible cancellation
   - **instant_booking** *optional, bool*\

@@ -28,6 +28,18 @@ def build_url(args):
     if 'max_price' in args and args['max_price']:
         URL = URL + '&max_price=' + args['max_price']
 
+    # Add min_bedrooms
+    if 'min_beds' in args and args['min_beds']:
+        URL = URL + '&min_beds=' + args['min_beds']
+
+    # Add min_bedrooms
+    if 'min_bedrooms' in args and args['min_bedrooms']:
+        URL = URL + '&min_bedrooms=' + args['min_bedrooms']
+
+    # Add min_bathrooms
+    if 'min_bathrooms' in args and args['min_bathrooms']:
+        URL = URL + '&min_bathrooms=' + args['min_bathrooms']
+
     # Add flexible_cancellation
     if 'flexible_cancellation' in args and args['flexible_cancellation']:
         URL = URL + '&flexible_cancellation=' + args['flexible_cancellation']
