@@ -32,6 +32,10 @@ def build_url(args):
     if 'flexible_cancellation' in args and args['flexible_cancellation']:
         URL = URL + '&flexible_cancellation=' + args['flexible_cancellation']
 
+    # Add instant booking
+    if 'instant_booking' in args and args['instant_booking']:
+        URL = URL + '&ib=' + args['instant_booking']
+
     # Add neighborhoods
     if 'neighborhoods' in args and args['neighborhoods']:
         neighborhoods = args['neighborhoods'].split(',')

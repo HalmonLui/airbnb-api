@@ -51,6 +51,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Maximum price per night
   - **flexible_cancellation** *optional, bool*\
     Stay has flexible cancellation
+  - **instant_booking** *optional, bool*\
+    Book without waiting for host approval
   - **neighborhoods** *optional*\
     Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578, 579
 
