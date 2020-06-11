@@ -36,7 +36,39 @@ def get_listings(args):
             listings[counter]['total_price'] = total
             counter += 1
 
-    # GET PRICE PER NIGHT, AMENITIES, HOUSING_INFO, SUPERHOST, LISTING_TYPE, RATING, NUM_REVIEWS
+    # GET SUPERHOST, LISTING_TYPE, RATING, NUM_REVIEWS
+    # This only works sometimes, airbnb must load their frontend slightly differently every fetch
+    divs = soup.find_all('div')
+    counter = 0
+    for div in divs:
+        if counter < len(listings) and div.get_text() == listings[counter]['listing_name']:
+            is_superhost = 'False'
+            listing_type = ''
+            rating = None
+            num_reviews = '0'
+
+            listing_info = div.previous_sibling
+            if listing_info:
+                for child in listing_info:
+                    if 'Entire ' in child.get_text() or 'Private ' in child.get_text():
+                        listing_type = child.get_text()
+                    elif 'SUPERHOST' in child.get_text():
+                        is_superhost = 'True'
+                    elif '(' and ')' in child.get_text():
+                        for c in child:
+                            split_rating = c.get_text().split()
+                            rating = split_rating[0]
+                            num_reviews = split_rating[1].replace('(', '')
+                            num_reviews = num_reviews.replace(')', '')
+
+            listings[counter]['is_superhost'] = is_superhost
+            listings[counter]['listing_type'] = listing_type
+            listings[counter]['rating'] = rating
+            listings[counter]['num_reviews'] = num_reviews
+
+            counter += 1
+
+    # GET PRICE PER NIGHT, AMENITIES, HOUSING_INFO
     counter = 0
     for span in spans:
         text = span.get_text()
@@ -44,10 +76,6 @@ def get_listings(args):
             price_per_night = None
             amenities = []
             housing_info = []
-            is_superhost = 'False'
-            listing_type = None
-            rating = None
-            num_reviews = None
 
             # Some have a discounted price so we only want the actual price per night
             price_per_night = text.rsplit('$', 1)[1]
@@ -66,30 +94,10 @@ def get_listings(args):
                 housing_info = housing_info_element.get_text()
                 housing_info = housing_info.split(' · ')
 
-            # Gets is_superhost, listing_type, rating, and num_reviews
-            # listing_info = span.parent.parent.parent.previous_sibling.previous_sibling.previous_sibling.previous_sibling.children
-            listing_info = None
-            if listing_info:
-                for child in listing_info:
-                    child_text = child.get_text()
-                    if 'Entire ' in child_text or 'Private ' in child_text:
-                        listing_type = child_text
-                    elif 'SUPERHOST' in child_text:
-                        is_superhost = 'True'
-                    elif '(' and ')' in child_text:
-                        for c in child:
-                            split_rating = c.get_text().split()
-                            rating = split_rating[0]
-                            num_reviews = split_rating[1].replace('(', '')
-                            num_reviews = num_reviews.replace(')', '')
-
             listings[counter]['price_per_night'] = price_per_night
             listings[counter]['amenities'] = amenities
             listings[counter]['housing_info'] = housing_info
-            listings[counter]['is_superhost'] = is_superhost
-            listings[counter]['listing_type'] = listing_type
-            listings[counter]['rating'] = rating
-            listings[counter]['num_reviews'] = num_reviews
+
             counter += 1
 
     return listings, 200
