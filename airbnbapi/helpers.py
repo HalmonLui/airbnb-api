@@ -36,6 +36,10 @@ def build_url(args):
     if 'instant_booking' in args and args['instant_booking']:
         URL = URL + '&ib=' + args['instant_booking']
 
+    # Add work trip
+    if 'work_trip' in args and args['work_trip']:
+        URL = URL + '&work_trip=' + args['work_trip']
+
     # Add neighborhoods
     if 'neighborhoods' in args and args['neighborhoods']:
         neighborhoods = args['neighborhoods'].split(',')
