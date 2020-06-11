@@ -20,6 +20,12 @@ def build_url(args):
     if 'adults' in args and args['adults']:
         URL = URL + '&adults=' + args['adults']
 
+    # Add neighborhoods
+    if 'neighborhoods' in args and args['neighborhoods']:
+        neighborhoods = args['neighborhoods'].split(',')
+        for neighborhood_id in neighborhoods:
+            URL = URL + '&neighborhood_ids%5B%5D=' + neighborhood_id
+
     # For debugging let's see the URL
     print(URL, flush=True)
     return URL

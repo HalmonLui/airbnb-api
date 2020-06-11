@@ -7,7 +7,6 @@ from . import helpers
 def get_listings(args):
     # Build the URL
     URL = helpers.build_url(args)
-    print('URL', URL, flush=True)
 
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, 'html.parser')
