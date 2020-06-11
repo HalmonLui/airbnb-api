@@ -35,6 +35,7 @@ class ListingsAPI(Resource):
         parser.add_argument('search_type', default='pagination')
         parser.add_argument('min_price')
         parser.add_argument('max_price')
+        parser.add_argument('flexible_cancellation')
         parser.add_argument('neighborhoods')
         args = parser.parse_args(strict=True)
         return controllers.get_listings(args)

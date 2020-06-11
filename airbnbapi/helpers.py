@@ -28,6 +28,10 @@ def build_url(args):
     if 'max_price' in args and args['max_price']:
         URL = URL + '&max_price=' + args['max_price']
 
+    # Add flexible_cancellation
+    if 'flexible_cancellation' in args and args['flexible_cancellation']:
+        URL = URL + '&flexible_cancellation=' + args['flexible_cancellation']
+
     # Add neighborhoods
     if 'neighborhoods' in args and args['neighborhoods']:
         neighborhoods = args['neighborhoods'].split(',')
