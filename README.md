@@ -45,8 +45,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Number of adults
   - **page** *optional, default is 0*\
     Each page shows 20 items at a time
-  - **neighborhoods** *optional, default is []*\
-    List of neighborhood IDs (can retrieve from /getNeighborhoods endpoint), ['675', '564']
+  - **neighborhoods** *optional*\
+    Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578, 579
 
 ### Response
 ```json
