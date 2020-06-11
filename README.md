@@ -120,8 +120,8 @@ In progress...
 ### Response
 
 ## Get Neighborhoods
-Airbnb uses unique neighborhood ids for each neighborhood, these are needed to query listings by neighborhood.
-Note: If endpoint doesn't work, check Install notes above.
+Airbnb uses unique neighborhood ids for each neighborhood, these are needed to query listings by neighborhood.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
 ### Request
 
 `GET /getNeighborhoods`
