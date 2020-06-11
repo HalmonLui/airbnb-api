@@ -13,7 +13,7 @@ Warning: Using this application may be against Airbnb's terms of services.
     cd airbnb-api
     pip -r requirements.txt
 
-    For neighborhood endpoint, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how
+  For neighborhood endpoint, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how.
 
 ## Run the app
 
