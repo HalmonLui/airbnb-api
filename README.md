@@ -45,6 +45,10 @@ Warning: Using this application may be against Airbnb's terms of services.
     Number of adults
   - **page** *optional, default is 0*\
     Each page shows 20 items at a time
+  - **min_price** *optional*\
+    Minimum price per night
+  - **max_price** *optional*\
+    Maximum price per night
   - **neighborhoods** *optional*\
     Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578, 579
 

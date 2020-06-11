@@ -20,6 +20,14 @@ def build_url(args):
     if 'adults' in args and args['adults']:
         URL = URL + '&adults=' + args['adults']
 
+    # Add min_price
+    if 'min_price' in args and args['min_price']:
+        URL = URL + '&min_price=' + args['min_price']
+
+    # Add max_price
+    if 'max_price' in args and args['max_price']:
+        URL = URL + '&max_price=' + args['max_price']
+
     # Add neighborhoods
     if 'neighborhoods' in args and args['neighborhoods']:
         neighborhoods = args['neighborhoods'].split(',')
