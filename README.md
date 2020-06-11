@@ -13,7 +13,7 @@ Warning: Using this application may be against Airbnb's terms of services.
     cd airbnb-api
     pip -r requirements.txt
 
-  For neighborhood endpoint, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how.
+  Note: For neighborhood endpoint, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how.
 
 ## Run the app
 
@@ -121,6 +121,7 @@ In progress...
 
 ## Get Neighborhoods
 Airbnb uses unique neighborhood ids for each neighborhood, these are needed to query listings by neighborhood.
+Note: If endpoint doesn't work, check Install notes above.
 ### Request
 
 `GET /getNeighborhoods`
