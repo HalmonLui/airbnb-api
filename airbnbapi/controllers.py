@@ -26,7 +26,7 @@ def get_listings(args):
             counter += 1
 
     # GET TOTAL PRICE
-    spans = soup.find_all('span')
+    spans = soup.find_all('button')
     counter = 0
     for span in spans:
         text = span.get_text()
