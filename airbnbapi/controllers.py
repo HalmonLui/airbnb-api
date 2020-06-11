@@ -116,13 +116,18 @@ def get_neighborhoods(args):
     driver.get(URL)
     time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
     more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0] # Dangerous, location of filter button may change
-    more_filters_button.click()
-    time.sleep(1) # Waiting for page's js to run
-    show_all_neighborhoods_button = driver.find_elements_by_class_name('_6lth7f')[5] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
-    show_all_neighborhoods_button.click()
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        show_all_neighborhoods_button = driver.find_elements_by_class_name('_6lth7f')[5] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_neighborhoods_button:
+            show_all_neighborhoods_button.click()
 
-    soup = BeautifulSoup(driver.page_source, 'html.parser')
-    driver.quit() # Close driver so we don't have idle processes
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        driver.quit() # Close driver so we don't have idle processes
+    else:
+        driver.quit()
+        return {'error': 'Unable to access neighborhoods'}, 400
 
     # Get neighborhoods and IDs from page
     neighborhoods = []
