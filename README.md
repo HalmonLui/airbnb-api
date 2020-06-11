@@ -55,6 +55,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Book without waiting for host approval
   - **work_trip** *optional, bool*\
     Traveling for work, 5 star ratings from business travelers
+  - **superhost** *optional, bool*\
+    Host is a superhost
   - **neighborhoods** *optional*\
     Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578, 579
 

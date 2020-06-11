@@ -24,6 +24,7 @@ class ListingsAPI(Resource):
         parser.add_argument('flexible_cancellation')
         parser.add_argument('instant_booking')
         parser.add_argument('work_trip')
+        parser.add_argument('superhost')
         parser.add_argument('neighborhoods')
         args = parser.parse_args(strict=True)
         return controllers.get_listings(args)

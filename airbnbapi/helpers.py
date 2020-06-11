@@ -40,6 +40,10 @@ def build_url(args):
     if 'work_trip' in args and args['work_trip']:
         URL = URL + '&work_trip=' + args['work_trip']
 
+    # Add superhost
+    if 'superhost' in args and args['superhost']:
+        URL = URL + '&superhost=' + args['superhost']
+
     # Add neighborhoods
     if 'neighborhoods' in args and args['neighborhoods']:
         neighborhoods = args['neighborhoods'].split(',')
