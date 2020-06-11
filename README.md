@@ -2,7 +2,7 @@
 
 This is an unofficial airbnb RESTful api which scrapes the airbnb site to retrieve data
 
-Application was built with Python3 and Flask.
+Application was built with Python3, Flask, BeautifulSoup, and Selenium.
 
 Warning: Using this application may be against Airbnb's terms of services.
 
