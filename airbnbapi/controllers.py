@@ -168,7 +168,7 @@ def get_accessibilities():
     if more_filters_button:
         more_filters_button.click()
         time.sleep(1) # Waiting for page's js to run
-        show_all_accessibilities = driver.find_elements_by_class_name('_6lth7f')[1] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        show_all_accessibilities = driver.find_elements_by_class_name('_6lth7f')[0] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
         if show_all_accessibilities:
             show_all_accessibilities.click()
             soup = BeautifulSoup(driver.page_source, 'html.parser')

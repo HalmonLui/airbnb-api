@@ -196,7 +196,27 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 ### Response
 ```json
   [
-
+      {
+          "accessibility": "No stairs or steps to enter",
+          "accessibility_id": "110"
+      },
+      {
+          "accessibility": "Well-lit path to entrance",
+          "accessibility_id": "113"
+      },
+      {
+          "accessibility": "Wide entrance for guests",
+          "accessibility_id": "111"
+      },
+      {
+          "accessibility": "Step-free path to entrance",
+          "accessibility_id": "112"
+      },
+      {
+          "accessibility": "Wide hallways",
+          "accessibility_id": "109"
+      },
+      ...
   ]
 ```
 
