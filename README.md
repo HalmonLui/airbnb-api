@@ -146,41 +146,6 @@ In progress...
 In progress...
 ```
 
-## Get Facilities
-Airbnb uses unique ids for each facility, these are needed to query listings by host facilities.\
-Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
-### Request
-
-`GET /getFacilities`
-
-    curl -X GET 'http://localhost:5000/getFacilities'
-
-### Response
-```json
-  [
-      {
-          "facility": "Free parking on premises",
-          "facility_id": "9"
-      },
-      {
-          "facility": "Gym",
-          "facility_id": "15"
-      },
-      {
-          "facility": "Hot tub",
-          "facility_id": "25"
-      },
-      {
-          "facility": "Pool",
-          "facility_id": "7"
-      },
-      {
-          "facility": "Pets allowed",
-          "facility_id": "12"
-      },
-  ]
-```
-
 ## Get Amenities
 Airbnb uses unique amenity ids for each amenity and facility, these are needed to query listings by host amenities.\
 Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
@@ -212,6 +177,41 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
       {
           "amenity": "Washer",
           "amenity_id": "33"
+      },
+  ]
+```
+
+## Get Facilities
+Airbnb uses unique ids for each facility, these are needed to query listings by host facilities.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getFacilities`
+
+    curl -X GET 'http://localhost:5000/getFacilities'
+
+### Response
+```json
+  [
+      {
+          "facility": "Free parking on premises",
+          "facility_id": "9"
+      },
+      {
+          "facility": "Gym",
+          "facility_id": "15"
+      },
+      {
+          "facility": "Hot tub",
+          "facility_id": "25"
+      },
+      {
+          "facility": "Pool",
+          "facility_id": "7"
+      },
+      {
+          "facility": "Pets allowed",
+          "facility_id": "12"
       },
   ]
 ```
