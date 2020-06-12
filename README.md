@@ -1,6 +1,6 @@
 # Unofficial Airbnb REST Api
 
-This is an unofficial airbnb RESTful api which scrapes the [airbnb site](https://www.airbnb.com/) to retrieve data
+This is an unofficial airbnb RESTful api which scrapes the [Airbnb site](https://www.airbnb.com/) to retrieve data
 
 Application was built with Python3, Flask, BeautifulSoup, and Selenium.
 
