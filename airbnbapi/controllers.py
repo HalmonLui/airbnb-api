@@ -102,52 +102,6 @@ def get_listings(args):
     return listings, 200
 
 
-def get_neighborhoods(args):
-    # Build the URL
-    URL = helpers.build_url(args)
-
-    # Prepare the webdriver
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
-
-    # Control the page to show all neighborhoods
-    driver.get(URL)
-    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
-    error_message = None
-    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0] # Dangerous, location of filter button may change
-    if more_filters_button:
-        more_filters_button.click()
-        time.sleep(1) # Waiting for page's js to run
-        show_all_neighborhoods_button = driver.find_elements_by_class_name('_6lth7f')[5] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
-        if show_all_neighborhoods_button:
-            show_all_neighborhoods_button.click()
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-        else:
-            error_message = 'Unable to access neighborhoods'
-    else:
-        error_message = 'Unable to access filter button'
-
-    driver.quit() # Close driver so we don't have idle processes
-
-    # Return error message if we cannot access airbnb's neighborhoods
-    if error_message:
-        return {'error': error_message}, 400
-
-    # Get neighborhoods and IDs from page
-    neighborhoods = []
-    inputs = soup.find_all('input')
-    for i in inputs:
-        ids = i.get('id')
-        if ids and 'neighborhood_ids' in ids:
-            neighborhood_id = ids.replace('neighborhood_ids-', '')
-            neighborhood = i.get('name')
-            neighborhoods.append({'neighborhood': neighborhood, 'neighborhood_id': neighborhood_id})
-
-    return neighborhoods, 200
-
-
 def get_property_types():
     # Build URL
     base_url = 'https://www.airbnb.com/s/homes?query='
@@ -199,6 +153,52 @@ def get_property_types():
             property_types.append({'property_type': property_type, 'property_type_id': property_type_id})
 
     return property_types
+
+
+def get_neighborhoods(args):
+    # Build the URL
+    URL = helpers.build_url(args)
+
+    # Prepare the webdriver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
+
+    # Control the page to show all neighborhoods
+    driver.get(URL)
+    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
+    error_message = None
+    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0] # Dangerous, location of filter button may change
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        show_all_neighborhoods_button = driver.find_elements_by_class_name('_6lth7f')[5] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_neighborhoods_button:
+            show_all_neighborhoods_button.click()
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+        else:
+            error_message = 'Unable to access neighborhoods'
+    else:
+        error_message = 'Unable to access filter button'
+
+    driver.quit() # Close driver so we don't have idle processes
+
+    # Return error message if we cannot access airbnb's neighborhoods
+    if error_message:
+        return {'error': error_message}, 400
+
+    # Get neighborhoods and IDs from page
+    neighborhoods = []
+    inputs = soup.find_all('input')
+    for i in inputs:
+        ids = i.get('id')
+        if ids and 'neighborhood_ids' in ids:
+            neighborhood_id = ids.replace('neighborhood_ids-', '')
+            neighborhood = i.get('name')
+            neighborhoods.append({'neighborhood': neighborhood, 'neighborhood_id': neighborhood_id})
+
+    return neighborhoods, 200
 
 
 def get_languages():
