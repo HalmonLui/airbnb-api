@@ -144,7 +144,8 @@ def get_amenities():
         if ids and 'amenities' in ids:
             amenity_id = ids.replace('amenities-', '')
             amenity = i.get('name')
-            amenities.append({'amenity': amenity, 'amenity_id': amenity_id})
+            if amenity != 'Pets allowed' or amenity != 'Smoking allowed':
+                amenities.append({'amenity': amenity, 'amenity_id': amenity_id})
 
     return amenities, 200
 
@@ -191,7 +192,8 @@ def get_accessibilities():
         if ids and 'amenities' in ids:
             accessibility_id = ids.replace('amenities-', '')
             accessibility = i.get('name')
-            accessibilities.append({'accessibility': accessibility, 'accessibility_id': accessibility_id})
+            if accessibility != 'Pets allowed' or accessibility != 'Smoking allowed':
+                accessibilities.append({'accessibility': accessibility, 'accessibility_id': accessibility_id})
 
     return accessibilities, 200
 
@@ -238,7 +240,8 @@ def get_facilities():
         if ids and 'amenities' in ids:
             facility_id = ids.replace('amenities-', '')
             facility = i.get('name')
-            facilities.append({'facility': facility, 'facility_id': facility_id})
+            if facility != 'Pets allowed' or facility != 'Smoking allowed':
+                facilities.append({'facility': facility, 'facility_id': facility_id})
 
     return facilities, 200
 
