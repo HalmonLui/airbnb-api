@@ -147,6 +147,53 @@ def get_neighborhoods(args):
 
     return neighborhoods, 200
 
+
+def get_property_types():
+    # Build URL
+    base_url = 'https://www.airbnb.com/s/homes?query='
+    URL = base_url + 'Boston' + '%2C%20' + 'MA' # Can use any city/state
+
+    # Set up headless chrome driver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
+
+    # Control page to show property types
+    driver.get(URL)
+    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
+    error_message = None
+    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0]
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        show_all_property_types_button = driver.find_elements_by_class_name('_6lth7f')[4] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_property_types_button:
+            show_all_property_types_button.click()
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+        else:
+            error_message = 'Unable to access property types'
+    else:
+        error_message = 'Unable to access filter button'
+
+    driver.quit() # Close driver to prevent idle processes
+
+    # Return error message if we cannot access property types
+    if error_message:
+        return {'error': error_message}, 400
+
+    property_types = []
+    inputs = soup.find_all('input')
+    for i in inputs:
+        ids = i.get('id')
+        if ids and 'property_types' in ids:
+            property_type_id = ids.replace('property_type-', '')
+            property_type = i.get('name')
+            property_types.append({'property_type': property_type, 'property_type_id': property_type_id})
+
+    return property_types
+
+
 def get_languages():
     # Build URL
     base_url = 'https://www.airbnb.com/s/homes?query='

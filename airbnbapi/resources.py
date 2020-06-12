@@ -44,6 +44,12 @@ class NeighborhoodsAPI(Resource):
         return controllers.get_neighborhoods(args)
 
 
+# Get Property Types and IDs
+class PropertyTypesAPI(Resource):
+    def get(self):
+        return controllers.get_property_types()
+
+
 # Get Langauges and IDs
 class LanguagesAPI(Resource):
     def get(self):
@@ -55,4 +61,5 @@ api.add_resource(Index, '/')
 api.add_resource(ListingsAPI, '/getListings')
 # api.add_resource(SpecificListingAPI, '/getListing/<int:num>')
 api.add_resource(NeighborhoodsAPI, '/getNeighborhoods')
+api.add_resource(PropertyTypesAPI, '/getPropertyTypes')
 api.add_resource(LanguagesAPI, '/getLanguages')
