@@ -167,10 +167,17 @@ def get_property_types():
     if more_filters_button:
         more_filters_button.click()
         time.sleep(1) # Waiting for page's js to run
-        show_all_property_types_button = driver.find_elements_by_class_name('_6lth7f')[4] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        show_all_unique_stays_button = driver.find_elements_by_class_name('_6lth7f')[4] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_unique_stays_button:
+            show_all_unique_stays_button.click()
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+        else:
+            error_message = 'Unable to access unique stays'
+
+        show_all_property_types_button = driver.find_elements_by_class_name('_6lth7f')[3] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
         if show_all_property_types_button:
             show_all_property_types_button.click()
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
+            property_soup = BeautifulSoup(driver.page_source, 'html.parser')
         else:
             error_message = 'Unable to access property types'
     else:
@@ -183,7 +190,7 @@ def get_property_types():
         return {'error': error_message}, 400
 
     property_types = []
-    inputs = soup.find_all('input')
+    inputs = property_soup.find_all('input')
     for i in inputs:
         ids = i.get('id')
         if ids and 'property_type_id' in ids:

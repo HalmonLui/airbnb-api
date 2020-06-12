@@ -65,6 +65,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Host is a superhost
   - **neighborhoods** *optional*\
     Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578,579
+  - **property_types** *optional*\
+    Comma separated list of property_type_ids (can retrieve from /getPropertyTypes endpoint), ex: 8,5
   - **languages** *optional*\
     Comma separated list of language_ids (can retrieve from /getLanguages endpoint), ex: 1,2
 
@@ -179,7 +181,7 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 ```
 
 ## Get Property Types
-Airbnb uses unique property type ids for each property type, these are needed to query listings by host property type.\
+Airbnb uses unique property type ids for each property type and unique stay, these are needed to query listings by host property type.\
 Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
 ### Request
 
@@ -191,24 +193,24 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 ```json
 [
     {
-        "property_type": "Barn",
-        "property_type_id": "57"
+        "property_type": "House",
+        "property_type_id": "2"
     },
     {
-        "property_type": "Boat",
-        "property_type_id": "8"
+        "property_type": "Apartment",
+        "property_type_id": "1"
     },
     {
-        "property_type": "Castle",
-        "property_type_id": "5"
+        "property_type": "Bed and breakfast",
+        "property_type_id": "3"
     },
     {
-        "property_type": "Earth house",
-        "property_type_id": "23"
+        "property_type": "Boutique hotel",
+        "property_type_id": "43"
     },
     {
-        "property_type": "Farm stay",
-        "property_type_id": "63"
+        "property_type": "Bungalow",
+        "property_type_id": "38"
     },
     ...
 ]
