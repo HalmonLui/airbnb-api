@@ -147,13 +147,49 @@ In progress...
 ```
 
 ## Get Amenities
-Airbnb uses unique amenity ids for each amenity and facility, these are needed to query listings by host amenities.\
+Airbnb uses unique ids for each amenity, these are needed to query listings by host amenities.\
 Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
 ### Request
 
 `GET /getAmenities`
 
     curl -X GET 'http://localhost:5000/getAmenities'
+
+### Response
+```json
+  [
+      {
+          "amenity": "Kitchen",
+          "amenity_id": "8"
+      },
+      {
+          "amenity": "Shampoo",
+          "amenity_id": "41"
+      },
+      {
+          "amenity": "Heating",
+          "amenity_id": "30"
+      },
+      {
+          "amenity": "Air conditioning",
+          "amenity_id": "5"
+      },
+      {
+          "amenity": "Washer",
+          "amenity_id": "33"
+      },
+      ...
+  ]
+```
+
+## Get Accessibility
+Airbnb uses unique ids for each accessibility, these are needed to query listings by host accessibility.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getAccessibility`
+
+    curl -X GET 'http://localhost:5000/getAccessibility'
 
 ### Response
 ```json
@@ -213,6 +249,7 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
           "facility": "Pets allowed",
           "facility_id": "12"
       },
+      ...
   ]
 ```
 
