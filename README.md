@@ -178,6 +178,42 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
   ]
 ```
 
+## Get Property Types
+Airbnb uses unique property type ids for each property type, these are needed to query listings by host property type.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getPropertyTypes`
+
+    curl -X GET 'http://localhost:5000/getPropertyTypes'
+
+### Response
+```json
+[
+    {
+        "property_type": "Barn",
+        "property_type_id": "57"
+    },
+    {
+        "property_type": "Boat",
+        "property_type_id": "8"
+    },
+    {
+        "property_type": "Castle",
+        "property_type_id": "5"
+    },
+    {
+        "property_type": "Earth house",
+        "property_type_id": "23"
+    },
+    {
+        "property_type": "Farm stay",
+        "property_type_id": "63"
+    },
+    ...
+]
+```
+
 ## Get Languages
 Airbnb uses unique language ids for each language, these are needed to query listings by host language.\
 Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.

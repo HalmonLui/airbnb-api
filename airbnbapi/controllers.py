@@ -186,8 +186,8 @@ def get_property_types():
     inputs = soup.find_all('input')
     for i in inputs:
         ids = i.get('id')
-        if ids and 'property_types' in ids:
-            property_type_id = ids.replace('property_type-', '')
+        if ids and 'property_type_id' in ids:
+            property_type_id = ids.replace('property_type_id-', '')
             property_type = i.get('name')
             property_types.append({'property_type': property_type, 'property_type_id': property_type_id})
 
