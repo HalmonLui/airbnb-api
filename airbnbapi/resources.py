@@ -29,6 +29,7 @@ class ListingsAPI(Resource):
         parser.add_argument('work_trip')
         parser.add_argument('superhost')
         parser.add_argument('amenities')
+        parser.add_argument('accessibilities')
         parser.add_argument('facilities')
         parser.add_argument('property_types')
         parser.add_argument('neighborhoods')
@@ -41,6 +42,12 @@ class ListingsAPI(Resource):
 class AmenitiesAPI(Resource):
     def get(self):
         return controllers.get_amenities()
+
+
+# Get Accessibilities and IDs
+class AccessibilitiesAPI(Resource):
+    def get(self):
+        return controllers.get_accessibilities()
 
 
 # Get Facilities and IDs
@@ -76,6 +83,7 @@ api.add_resource(Index, '/')
 api.add_resource(ListingsAPI, '/getListings')
 # api.add_resource(SpecificListingAPI, '/getListing/<int:num>')
 api.add_resource(AmenitiesAPI, '/getAmenities')
+api.add_resource(AccessibilitiesAPI, '/getAccessibilities')
 api.add_resource(FacilitiesAPI, '/getFacilities')
 api.add_resource(PropertyTypesAPI, '/getPropertyTypes')
 api.add_resource(NeighborhoodsAPI, '/getNeighborhoods')

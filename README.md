@@ -65,6 +65,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Host is a superhost
   - **amenities** *optional*\
     Comma separated list of amenity_ids (can retrieve from /getAmenities endpoint), ex: 44,45
+  - **accessibility** *optional*\
+    Comma separated list of accessibility_ids (can retrieve from /getAccessibilities endpoint) ex:
   - **facilities** *optional*\
     Comma separated list of facility_ids (can retrieve from /getFacilities endpoint), ex: 7,9
   - **property_types** *optional*\
@@ -182,38 +184,19 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
   ]
 ```
 
-## Get Accessibility
+## Get Accessibilities
 Airbnb uses unique ids for each accessibility, these are needed to query listings by host accessibility.\
 Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
 ### Request
 
-`GET /getAccessibility`
+`GET /getAccessibilities`
 
-    curl -X GET 'http://localhost:5000/getAccessibility'
+    curl -X GET 'http://localhost:5000/getAccessibilities'
 
 ### Response
 ```json
   [
-      {
-          "amenity": "Kitchen",
-          "amenity_id": "8"
-      },
-      {
-          "amenity": "Shampoo",
-          "amenity_id": "41"
-      },
-      {
-          "amenity": "Heating",
-          "amenity_id": "30"
-      },
-      {
-          "amenity": "Air conditioning",
-          "amenity_id": "5"
-      },
-      {
-          "amenity": "Washer",
-          "amenity_id": "33"
-      },
+
   ]
 ```
 
@@ -244,12 +227,7 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
       {
           "facility": "Pool",
           "facility_id": "7"
-      },
-      {
-          "facility": "Pets allowed",
-          "facility_id": "12"
-      },
-      ...
+      }
   ]
 ```
 

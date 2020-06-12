@@ -62,6 +62,12 @@ def build_url(args):
         for amenity_id in amenities:
             URL = URL + '&amenities%5B%5D=' + amenity_id
 
+    # Add accessibilities
+    if 'accessibilities' in args and args['accessibilities']:
+        accessibilities = args['accessibilities'].split(',')
+        for accessibility_id in accessibilities:
+            URL = URL + '&amenities%5B%5D=' + accessibility_id
+
     # Add facilities
     if 'facilities' in args and args['facilities']:
         facilities = args['facilities'].split(',')

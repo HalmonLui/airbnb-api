@@ -149,6 +149,53 @@ def get_amenities():
     return amenities, 200
 
 
+def get_accessibilities():
+    # Build URL
+    base_url = 'https://www.airbnb.com/s/homes?query='
+    URL = base_url + 'Boston' + '%2C%20' + 'MA' # Can use any city/state
+
+    # Prepare the webdriver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
+
+    # Control the page to show all accessibilities
+    driver.get(URL)
+    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
+    error_message = None
+    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0] # Dangerous, location of filter button may change
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        show_all_accessibilities = driver.find_elements_by_class_name('_6lth7f')[1] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_accessibilities:
+            show_all_accessibilities.click()
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+        else:
+            error_message = 'Unable to access accessibilities'
+    else:
+        error_message = 'Unable to access filter button'
+
+    driver.quit() # Close driver so we don't have idle processes
+
+    # Return error message if we cannot access airbnb's accessibilities
+    if error_message:
+        return {'error': error_message}, 400
+
+    # Get accessibilities and IDs from page
+    accessibilities = []
+    inputs = soup.find_all('input')
+    for i in inputs:
+        ids = i.get('id')
+        if ids and 'amenities' in ids:
+            accessibility_id = ids.replace('amenities-', '')
+            accessibility = i.get('name')
+            accessibilities.append({'accessibility': accessibility, 'accessibility_id': accessibility_id})
+
+    return accessibilities, 200
+
+
 def get_facilities():
     # Build URL
     base_url = 'https://www.airbnb.com/s/homes?query='
