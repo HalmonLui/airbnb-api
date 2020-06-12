@@ -64,7 +64,9 @@ Warning: Using this application may be against Airbnb's terms of services.
   - **superhost** *optional, bool*\
     Host is a superhost
   - **neighborhoods** *optional*\
-    Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578, 579
+    Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578,579
+  - **languages** *optional*\
+    Comma separated list of language_ids (can retrieve from /getLanguages endpoint), ex: 1,2
 
 ### Response
 ```json

@@ -62,6 +62,12 @@ def build_url(args):
         for neighborhood_id in neighborhoods:
             URL = URL + '&neighborhood_ids%5B%5D=' + neighborhood_id
 
+    # Add languages
+    if 'languages' in args and args['languages']:
+        languages = args['languages'].split(',')
+        for language_id in languages:
+            URL = URL + '&languages%5B%5D=' + language_id
+
     # For debugging let's see the URL
     print(URL, flush=True)
     return URL
