@@ -175,3 +175,39 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
     ...
   ]
 ```
+
+## Get Languages
+Airbnb uses unique language ids for each language, these are needed to query listings by host language.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getLanguages`
+
+    curl -X GET 'http://localhost:5000/getLanguages'
+
+### Response
+```json
+  [
+    {
+      "language": "English",
+      "language_id": "1"
+    },
+    {
+      "language": "French",
+      "language_id": "2"
+    },
+    {
+      "language": "German",
+      "language_id": "4"
+    },
+    {
+      "language": "Japanese",
+      "language_id": "8"
+    },
+    {
+      "language": "Italian",
+      "language_id": "16"
+    },
+    ...
+  ]
+```
