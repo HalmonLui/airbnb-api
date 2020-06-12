@@ -103,8 +103,97 @@ def get_listings(args):
 
 
 def get_amenities():
-    # Coming very soon
-    return
+    # Build URL
+    base_url = 'https://www.airbnb.com/s/homes?query='
+    URL = base_url + 'Boston' + '%2C%20' + 'MA' # Can use any city/state
+
+    # Prepare the webdriver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
+
+    # Control the page to show all amenities
+    driver.get(URL)
+    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
+    error_message = None
+    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0] # Dangerous, location of filter button may change
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        show_all_amenities = driver.find_elements_by_class_name('_6lth7f')[1] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_amenities:
+            show_all_amenities.click()
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+        else:
+            error_message = 'Unable to access amenities'
+    else:
+        error_message = 'Unable to access filter button'
+
+    driver.quit() # Close driver so we don't have idle processes
+
+    # Return error message if we cannot access airbnb's amenities
+    if error_message:
+        return {'error': error_message}, 400
+
+    # Get amenities and IDs from page
+    amenities = []
+    inputs = soup.find_all('input')
+    for i in inputs:
+        ids = i.get('id')
+        if ids and 'amenities' in ids:
+            amenity_id = ids.replace('amenities-', '')
+            amenity = i.get('name')
+            amenities.append({'amenity': amenity, 'amenity_id': amenity_id})
+
+    return amenities, 200
+
+
+def get_facilities():
+    # Build URL
+    base_url = 'https://www.airbnb.com/s/homes?query='
+    URL = base_url + 'Boston' + '%2C%20' + 'MA' # Can use any city/state
+
+    # Prepare the webdriver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
+
+    # Control the page to show all facilities
+    driver.get(URL)
+    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
+    error_message = None
+    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0] # Dangerous, location of filter button may change
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        show_all_facilities = driver.find_elements_by_class_name('_6lth7f')[2] # Dangerous, classnames automatically change based on window dimensions, they might also rotate every once and a while for airbnb security
+        if show_all_facilities:
+            show_all_facilities.click()
+            soup = BeautifulSoup(driver.page_source, 'html.parser')
+        else:
+            error_message = 'Unable to access facilities'
+    else:
+        error_message = 'Unable to access filter button'
+
+    driver.quit() # Close driver so we don't have idle processes
+
+    # Return error message if we cannot access airbnb's facilities
+    if error_message:
+        return {'error': error_message}, 400
+
+    # Get amenities and IDs from page
+    facilities = []
+    inputs = soup.find_all('input')
+    for i in inputs:
+        ids = i.get('id')
+        if ids and 'amenities' in ids:
+            facility_id = ids.replace('amenities-', '')
+            facility = i.get('name')
+            facilities.append({'facility': facility, 'facility_id': facility_id})
+
+    return facilities, 200
 
 
 def get_property_types():
@@ -157,7 +246,7 @@ def get_property_types():
             property_type = i.get('name')
             property_types.append({'property_type': property_type, 'property_type_id': property_type_id})
 
-    return property_types
+    return property_types, 200
 
 
 def get_neighborhoods(args):

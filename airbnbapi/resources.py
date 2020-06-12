@@ -28,8 +28,10 @@ class ListingsAPI(Resource):
         parser.add_argument('instant_booking')
         parser.add_argument('work_trip')
         parser.add_argument('superhost')
-        parser.add_argument('neighborhoods')
+        parser.add_argument('amenities')
+        parser.add_argument('facilities')
         parser.add_argument('property_types')
+        parser.add_argument('neighborhoods')
         parser.add_argument('languages')
         args = parser.parse_args(strict=True)
         return controllers.get_listings(args)
@@ -39,6 +41,12 @@ class ListingsAPI(Resource):
 class AmenitiesAPI(Resource):
     def get(self):
         return controllers.get_amenities()
+
+
+# Get Facilities and IDs
+class FacilitiesAPI(Resource):
+    def get(self):
+        return controllers.get_facilities()
 
 
 # Get Property Types and IDs
@@ -68,6 +76,7 @@ api.add_resource(Index, '/')
 api.add_resource(ListingsAPI, '/getListings')
 # api.add_resource(SpecificListingAPI, '/getListing/<int:num>')
 api.add_resource(AmenitiesAPI, '/getAmenities')
+api.add_resource(FacilitiesAPI, '/getFacilities')
 api.add_resource(PropertyTypesAPI, '/getPropertyTypes')
 api.add_resource(NeighborhoodsAPI, '/getNeighborhoods')
 api.add_resource(LanguagesAPI, '/getLanguages')

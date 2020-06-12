@@ -59,8 +59,14 @@ def build_url(args):
     # Add amenities
     if 'amenities' in args and args['amenities']:
         amenities = args['amenities'].split(',')
-        for amenities_id in amenities:
-            URL = URL + '&amenities%5B%5D=' + amenities_id
+        for amenity_id in amenities:
+            URL = URL + '&amenities%5B%5D=' + amenity_id
+
+    # Add facilities
+    if 'facilities' in args and args['facilities']:
+        facilities = args['facilities'].split(',')
+        for facility_id in facilities:
+            URL = URL + '&amenities%5B%5D=' + facility_id
 
     # Add property types
     if 'property_types' in args and args['property_types']:

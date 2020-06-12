@@ -64,7 +64,7 @@ Warning: Using this application may be against Airbnb's terms of services.
   - **superhost** *optional, bool*\
     Host is a superhost
   - **amenities** *optional*\
-    Comma separated list of amenities_ids (can retrieve from /getAmenities endpoint), ex: 1,2
+    Comma separated list of amenity_ids (can retrieve from /getAmenities endpoint), ex: 1,2
   - **property_types** *optional*\
     Comma separated list of property_type_ids (can retrieve from /getPropertyTypes endpoint), ex: 8,5
   - **neighborhoods** *optional*\
@@ -140,7 +140,7 @@ In progress...
 ### Response
 
 ## Get Amenities
-Airbnb uses unique amenities ids for each amenity and facility, these are needed to query listings by host amenities.\
+Airbnb uses unique amenity ids for each amenity and facility, these are needed to query listings by host amenities.\
 Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
 ### Request
 
