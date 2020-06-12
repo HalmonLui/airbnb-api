@@ -64,7 +64,9 @@ Warning: Using this application may be against Airbnb's terms of services.
   - **superhost** *optional, bool*\
     Host is a superhost
   - **amenities** *optional*\
-    Comma separated list of amenity_ids (can retrieve from /getAmenities endpoint), ex: 1,2
+    Comma separated list of amenity_ids (can retrieve from /getAmenities endpoint), ex: 44,45
+  - **facilities** *optional*\
+    Comma separated list of facility_ids (can retrieve from /getFacilities endpoint), ex: 7,9
   - **property_types** *optional*\
     Comma separated list of property_type_ids (can retrieve from /getPropertyTypes endpoint), ex: 8,5
   - **neighborhoods** *optional*\
@@ -119,7 +121,7 @@ Warning: Using this application may be against Airbnb's terms of services.
 ```
 
 ## Get Deep Listings
-In progress...
+
 ### Request
 
 `Get /getDeepListings`
@@ -127,10 +129,12 @@ In progress...
     curl -X GET 'http://localhost:5000/getListings?city=Boston&state=MA'
 
 ### Response
-
+```json
+In progress...
+```
 
 ## Get Specific Listing
-In progress...
+
 ### Request
 
 `GET /getListing/<id>`
@@ -138,6 +142,44 @@ In progress...
     curl -X GET 'http://localhost:5000/getListing?id=123456'
 
 ### Response
+```json
+In progress...
+```
+
+## Get Facilities
+Airbnb uses unique ids for each facility, these are needed to query listings by host facilities.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getFacilities`
+
+    curl -X GET 'http://localhost:5000/getFacilities'
+
+### Response
+```json
+  [
+      {
+          "facility": "Free parking on premises",
+          "facility_id": "9"
+      },
+      {
+          "facility": "Gym",
+          "facility_id": "15"
+      },
+      {
+          "facility": "Hot tub",
+          "facility_id": "25"
+      },
+      {
+          "facility": "Pool",
+          "facility_id": "7"
+      },
+      {
+          "facility": "Pets allowed",
+          "facility_id": "12"
+      },
+  ]
+```
 
 ## Get Amenities
 Airbnb uses unique amenity ids for each amenity and facility, these are needed to query listings by host amenities.\
@@ -150,7 +192,28 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 
 ### Response
 ```json
-In progress...
+  [
+      {
+          "amenity": "Kitchen",
+          "amenity_id": "8"
+      },
+      {
+          "amenity": "Shampoo",
+          "amenity_id": "41"
+      },
+      {
+          "amenity": "Heating",
+          "amenity_id": "30"
+      },
+      {
+          "amenity": "Air conditioning",
+          "amenity_id": "5"
+      },
+      {
+          "amenity": "Washer",
+          "amenity_id": "33"
+      },
+  ]
 ```
 
 ## Get Property Types
@@ -164,29 +227,29 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 
 ### Response
 ```json
-[
-    {
-        "property_type": "House",
-        "property_type_id": "2"
-    },
-    {
-        "property_type": "Apartment",
-        "property_type_id": "1"
-    },
-    {
-        "property_type": "Bed and breakfast",
-        "property_type_id": "3"
-    },
-    {
-        "property_type": "Boutique hotel",
-        "property_type_id": "43"
-    },
-    {
-        "property_type": "Bungalow",
-        "property_type_id": "38"
-    },
-    ...
-]
+  [
+      {
+          "property_type": "House",
+          "property_type_id": "2"
+      },
+      {
+          "property_type": "Apartment",
+          "property_type_id": "1"
+      },
+      {
+          "property_type": "Bed and breakfast",
+          "property_type_id": "3"
+      },
+      {
+          "property_type": "Boutique hotel",
+          "property_type_id": "43"
+      },
+      {
+          "property_type": "Bungalow",
+          "property_type_id": "38"
+      },
+      ...
+  ]
 ```
 
 ## Get Neighborhoods
