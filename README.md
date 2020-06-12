@@ -150,29 +150,7 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 
 ### Response
 ```json
-[
-    {
-        "property_type": "House",
-        "property_type_id": "2"
-    },
-    {
-        "property_type": "Apartment",
-        "property_type_id": "1"
-    },
-    {
-        "property_type": "Bed and breakfast",
-        "property_type_id": "3"
-    },
-    {
-        "property_type": "Boutique hotel",
-        "property_type_id": "43"
-    },
-    {
-        "property_type": "Bungalow",
-        "property_type_id": "38"
-    },
-    ...
-]
+In progress...
 ```
 
 ## Get Property Types

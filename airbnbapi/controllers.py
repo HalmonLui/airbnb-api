@@ -103,6 +103,7 @@ def get_listings(args):
 
 
 def get_amenities():
+    # Coming very soon
     return
 
 
