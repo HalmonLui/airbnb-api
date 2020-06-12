@@ -102,6 +102,10 @@ def get_listings(args):
     return listings, 200
 
 
+def get_amenities():
+    return
+
+
 def get_property_types():
     # Build URL
     base_url = 'https://www.airbnb.com/s/homes?query='

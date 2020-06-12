@@ -35,6 +35,12 @@ class ListingsAPI(Resource):
         return controllers.get_listings(args)
 
 
+# Get Amenities and IDs
+class AmenitiesAPI(Resource):
+    def get(self):
+        return controllers.get_amenities()
+
+
 # Get Property Types and IDs
 class PropertyTypesAPI(Resource):
     def get(self):
@@ -61,6 +67,7 @@ class LanguagesAPI(Resource):
 api.add_resource(Index, '/')
 api.add_resource(ListingsAPI, '/getListings')
 # api.add_resource(SpecificListingAPI, '/getListing/<int:num>')
+api.add_resource(AmenitiesAPI, '/getAmenities')
 api.add_resource(PropertyTypesAPI, '/getPropertyTypes')
 api.add_resource(NeighborhoodsAPI, '/getNeighborhoods')
 api.add_resource(LanguagesAPI, '/getLanguages')

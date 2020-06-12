@@ -63,6 +63,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Traveling for work, 5 star ratings from business travelers
   - **superhost** *optional, bool*\
     Host is a superhost
+  - **amenities** *optional*\
+    Comma separated list of amenities_ids (can retrieve from /getAmenities endpoint), ex: 1,2
   - **property_types** *optional*\
     Comma separated list of property_type_ids (can retrieve from /getPropertyTypes endpoint), ex: 8,5
   - **neighborhoods** *optional*\
@@ -136,6 +138,42 @@ In progress...
     curl -X GET 'http://localhost:5000/getListing?id=123456'
 
 ### Response
+
+## Get Amenities
+Airbnb uses unique amenities ids for each amenity and facility, these are needed to query listings by host amenities.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getAmenities`
+
+    curl -X GET 'http://localhost:5000/getAmenities'
+
+### Response
+```json
+[
+    {
+        "property_type": "House",
+        "property_type_id": "2"
+    },
+    {
+        "property_type": "Apartment",
+        "property_type_id": "1"
+    },
+    {
+        "property_type": "Bed and breakfast",
+        "property_type_id": "3"
+    },
+    {
+        "property_type": "Boutique hotel",
+        "property_type_id": "43"
+    },
+    {
+        "property_type": "Bungalow",
+        "property_type_id": "38"
+    },
+    ...
+]
+```
 
 ## Get Property Types
 Airbnb uses unique property type ids for each property type and unique stay, these are needed to query listings by host property type.\

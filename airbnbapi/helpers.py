@@ -56,6 +56,12 @@ def build_url(args):
     if 'superhost' in args and args['superhost']:
         URL = URL + '&superhost=' + args['superhost']
 
+    # Add amenities
+    if 'amenities' in args and args['amenities']:
+        amenities = args['amenities'].split(',')
+        for amenities_id in amenities:
+            URL = URL + '&amenities%5B%5D=' + amenities_id
+
     # Add property types
     if 'property_types' in args and args['property_types']:
         property_types = args['property_types'].split(',')
