@@ -11,7 +11,7 @@ Warning: Using this application may be against Airbnb's terms of services.
 
     git clone https://github.com/HalmonLui/airbnb-api.git
     cd airbnb-api
-    pip -r requirements.txt
+    pip install -r requirements.txt
 
   Note: For some endpoints, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how.
 
