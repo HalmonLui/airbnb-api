@@ -1,4 +1,4 @@
-# Unofficial Airbnb Scraper REST Api
+# Unofficial Airbnb REST Api
 
 This is an unofficial airbnb RESTful api which scrapes the [airbnb site](https://www.airbnb.com/) to retrieve data
 
