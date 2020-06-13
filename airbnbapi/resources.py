@@ -63,7 +63,7 @@ class PropertyTypesAPI(Resource):
 
 
 # Get House Rules and IDs
-class HosueRulesAPI(Resource):
+class HouseRulesAPI(Resource):
     def get(self):
         return controllers.get_house_rules()
 
