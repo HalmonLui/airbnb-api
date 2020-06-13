@@ -296,7 +296,7 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
 
 `GET /getHouseRules`
 
-    curl -X GET 'http://localhost:5000/getHosueRules'
+    curl -X GET 'http://localhost:5000/getHouseRules'
 
 ### Response
 ```json
