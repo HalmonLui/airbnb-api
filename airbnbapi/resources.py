@@ -62,6 +62,12 @@ class PropertyTypesAPI(Resource):
         return controllers.get_property_types()
 
 
+# Get House Rules and IDs
+class HosueRulesAPI(Resource):
+    def get(self):
+        return controllers.get_house_rules()
+
+
 # Get Neighborhoods and IDs
 class NeighborhoodsAPI(Resource):
     def get(self):
@@ -86,5 +92,6 @@ api.add_resource(AmenitiesAPI, '/getAmenities')
 api.add_resource(AccessibilitiesAPI, '/getAccessibilities')
 api.add_resource(FacilitiesAPI, '/getFacilities')
 api.add_resource(PropertyTypesAPI, '/getPropertyTypes')
+api.add_resource(HouseRulesAPI, '/getHouseRules')
 api.add_resource(NeighborhoodsAPI, '/getNeighborhoods')
 api.add_resource(LanguagesAPI, '/getLanguages')
