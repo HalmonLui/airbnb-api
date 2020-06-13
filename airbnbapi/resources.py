@@ -32,6 +32,7 @@ class ListingsAPI(Resource):
         parser.add_argument('accessibilities')
         parser.add_argument('facilities')
         parser.add_argument('property_types')
+        parser.add_argument('house_rules')
         parser.add_argument('neighborhoods')
         parser.add_argument('languages')
         args = parser.parse_args(strict=True)
