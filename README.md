@@ -71,6 +71,8 @@ Warning: Using this application may be against Airbnb's terms of services.
     Comma separated list of facility_ids (can retrieve from /getFacilities endpoint), ex: 7,9
   - **property_types** *optional*\
     Comma separated list of property_type_ids (can retrieve from /getPropertyTypes endpoint), ex: 8,5
+  - **house_rules** *optional*\
+    Comma separated list of house_rules_ids (can retrieve from /getHouseRules endpoint), ex: 11,12
   - **neighborhoods** *optional*\
     Comma separated list of neighborhood_ids (can retrieve from /getNeighborhoods endpoint), ex: 578,579
   - **languages** *optional*\
@@ -284,6 +286,29 @@ Note: If endpoint doesn't work, make sure you [installed](https://github.com/Hal
           "property_type_id": "38"
       },
       ...
+  ]
+```
+
+## Get House Rules
+Airbnb uses unique ids for each house rule, these are needed to query listings by house rules.\
+Note: If endpoint doesn't work, make sure you [installed](https://github.com/HalmonLui/airbnb-api#install) correctly.
+### Request
+
+`GET /getHouseRules`
+
+    curl -X GET 'http://localhost:5000/getHosueRules'
+
+### Response
+```json
+  [
+    {
+      "house_rule": "Pets allowed",
+      "house_rule_id": "12"
+    },
+    {
+      "house_rule": "Smoking allowed",
+      "house_rule_id": "11"
+    }
   ]
 ```
 

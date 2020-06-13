@@ -299,6 +299,47 @@ def get_property_types():
     return property_types, 200
 
 
+def get_house_rules():
+    # Build URL
+    base_url = 'https://www.airbnb.com/s/homes?query='
+    URL = base_url + 'Boston' + '%2C%20' + 'MA' # Can use any city/state
+
+    # Set up headless chrome driver
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(500, 951) # Manually set window size so we can find by class name later
+
+    # Control page to show house rules
+    driver.get(URL)
+    time.sleep(1) # Since we are in a browser, the javascript takes time to run so let's give it time
+    error_message = None
+    more_filters_button = driver.find_elements_by_xpath('//*[@id="filter-menu-chip-group"]/div[2]/button')[0]
+    if more_filters_button:
+        more_filters_button.click()
+        time.sleep(1) # Waiting for page's js to run
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+    else:
+        error_message = 'Unable to access filter button'
+
+    driver.quit() # Close driver to prevent idle processes
+
+    # Return error message if we cannot access languages
+    if error_message:
+        return {'error': error_message}, 400
+
+    house_rules = []
+    inputs = soup.find_all('input')
+    for i in inputs:
+        ids = i.get('id')
+        if ids and 'amenities' in ids:
+            house_rule_id = ids.replace('amenities-', '')
+            house_rule = i.get('name')
+            house_rules.append({'house_rule': house_rule, 'house_rule_id': house_rule_id})
+
+    return house_rules, 200
+
+
 def get_neighborhoods(args):
     # Build the URL
     URL = helpers.build_url(args)

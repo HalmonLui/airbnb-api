@@ -80,6 +80,12 @@ def build_url(args):
         for property_type_id in property_types:
             URL = URL + '&property_type_id%5B%5D=' + property_type_id
 
+    # Add house_rules
+    if 'house_rules' in args and args['house_rules']:
+        house_rules = args['house_rules'].split(',')
+        for house_rules_id in house_rules:
+            URL = URL + '&amenities%5B%5D=' + house_rules_id
+
     # Add neighborhoods
     if 'neighborhoods' in args and args['neighborhoods']:
         neighborhoods = args['neighborhoods'].split(',')
