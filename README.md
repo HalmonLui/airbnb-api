@@ -14,12 +14,14 @@ Warning: Using this application may be against Airbnb's terms of services.
     pip install -r requirements.txt
 
   Note: For some endpoints, you need selenium with the Chrome driver in your PATH. Follow [this tutorial](https://zwbetz.com/download-chromedriver-binary-and-add-to-your-path-for-automated-functional-testing/) to learn how.
+  For some reason, not all requirements may get installed. If that is the case, run
+    pip install selenium
+    pip install flask-restful
 
 ## Run the app
 
     export FLASK_APP=airbnbapi
     flask run
-
 
 # REST API
 
