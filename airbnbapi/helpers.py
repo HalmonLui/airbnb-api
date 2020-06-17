@@ -9,57 +9,55 @@ def build_url(args):
         if  args['search_type'] == 'pagination' and args['page']:
             items_offset = str(int(args['page']) * 20)
             qstr = urlencode({'search_type': args['search_type'], 'items_offset': items_offset})
-        URL = URL + qstr
+        URL += qstr
 
     # Add location, these are required fields
     if args['city'] and args['state']:
-        URL = URL + '&query=' + args['city'] + '%2C%20' + args['state']
+        URL += '&query=' + args['city'] + '%2C%20' + args['state']
 
     # Add logistics
     if args['checkin'] and args['checkout']:
-        qstr = urlencode({'checkin': args['checkin'], 'checkout': args['checkout']})
-        URL = URL + qstr
+        URL += urlencode({'checkin': args['checkin'], 'checkout': args['checkout']})
 
     # Add adults, there is default='1' but check just for safety
     if args['adults']:
-        qstr = urlencode({'adults': adults})
-        URL = URL + qstr
+        URL += urlencode({'adults': args['adults']})
 
     # Add min_price
     if args['min_price']:
-        URL = URL + '&min_price=' + args['min_price']
+        URL += urlencode({'min_price': args['min_price']})
 
     # Add max_price
     if args['max_price']:
-        URL = URL + '&max_price=' + args['max_price']
+        URL += urlencode({'max_price': args['max_price']})
 
     # Add min_bedrooms
     if args['min_beds']:
-        URL = URL + '&min_beds=' + args['min_beds']
+        URL += urlencode({'min_beds': args['min_beds']})
 
     # Add min_bedrooms
     if args['min_bedrooms']:
-        URL = URL + '&min_bedrooms=' + args['min_bedrooms']
+        URL += urlencode({'min_bedrooms': args['min_bedrooms']})
 
     # Add min_bathrooms
     if args['min_bathrooms']:
-        URL = URL + '&min_bathrooms=' + args['min_bathrooms']
+        URL += urlencode({'min_bathrooms': args['min_bathrooms']})
 
     # Add flexible_cancellation
     if args['flexible_cancellation']:
-        URL = URL + '&flexible_cancellation=' + args['flexible_cancellation']
+        URL += urlencode({'flexible_cancellation': args['flexible_cancellation']})
 
     # Add instant booking
     if args['instant_booking']:
-        URL = URL + '&ib=' + args['instant_booking']
+        URL += urlencode({'ib': args['instant_booking']})
 
     # Add work trip
     if args['work_trip']:
-        URL = URL + '&work_trip=' + args['work_trip']
+        URL += urlencode({'work_trip': args['work_trip']})
 
     # Add superhost
     if args['superhost']:
-        URL = URL + '&superhost=' + args['superhost']
+        URL += urlencode({'superhost': args['superhost']})
 
     # Add amenities
     if args['amenities']:
