@@ -1,15 +1,18 @@
+from urllib.parse import urlencode
+
 def build_url(args):
     URL = 'https://www.airbnb.com/s/homes?'
 
     # Add pagination
-    if 'search_type' in args and args['search_type']:
-        URL = URL + 'search_type=' + args['search_type']
-        if  args['search_type'] == 'pagination' and 'page' in args and args['page']:
+    if args['search_type']:
+        qstr = urlencode({'search_type': args['search_type']})
+        if  args['search_type'] == 'pagination' and args['page']:
             items_offset = str(int(args['page']) * 20)
-            URL = URL + '&items_offset=' + items_offset
+            qstr = urlencode({'search_type': args['search_type'], 'items_offset': items_offset})
+        URL = URL + qstr
 
     # Add location, these are required fields
-    if 'city' in args and args['city'] and 'state' in args and args['state']:
+    if args['city'] and args['state']:
         URL = URL + '&query=' + args['city'] + '%2C%20' + args['state']
 
     # Add logistics
