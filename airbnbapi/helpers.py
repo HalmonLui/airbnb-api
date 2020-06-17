@@ -108,10 +108,6 @@ def build_url(args):
         languages = args['languages'].split(',')
         params['languages[]'] = languages
 
-    # # Add location, these are required fields
-    # if args['city'] and args['state']:
-    #     URL += '&query=' + args['city'] + '%2C%20' + args['state']
-
     URL += urlencode(params, True, quote_via=quote)
     # For debugging let's see the URL
     print(URL, flush=True)
