@@ -94,7 +94,7 @@ class LanguagesAPI(Resource):
 # adding the defined resources along with their corresponding urls
 api.add_resource(Index, '/')
 api.add_resource(ListingsAPI, '/getListings')
-api.add_resource(CoordinatesAPI, '/getListingCoordinates/<string:listing_id>')
+api.add_resource(CoordinatesAPI, '/getListingCoordinates/<int:listing_id>')
 # api.add_resource(SpecificListingAPI, '/getListing/<int:num>')
 api.add_resource(AmenitiesAPI, '/getAmenities')
 api.add_resource(AccessibilitiesAPI, '/getAccessibilities')
