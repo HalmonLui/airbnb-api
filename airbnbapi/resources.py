@@ -42,7 +42,7 @@ class ListingsAPI(Resource):
 # Get Listing latitude and longitude coordinates from listing_id
 class CoordinatesAPI(Resource):
     def get(self, listing_id):
-        return controllers.get_coordinates()
+        return controllers.get_coordinates(listing_id)
 
 
 # Get Amenities and IDs
