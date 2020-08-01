@@ -39,6 +39,12 @@ class ListingsAPI(Resource):
         return controllers.get_listings(args)
 
 
+# Get Listing latitude and longitude coordinates from listing_id
+class CoordinatesAPI(Resource):
+    def get(self, listing_id):
+        return controllers.get_coordinates(listing_id)
+
+
 # Get Amenities and IDs
 class AmenitiesAPI(Resource):
     def get(self):
@@ -88,6 +94,7 @@ class LanguagesAPI(Resource):
 # adding the defined resources along with their corresponding urls
 api.add_resource(Index, '/')
 api.add_resource(ListingsAPI, '/getListings')
+api.add_resource(CoordinatesAPI, '/getListingCoordinates/<int:listing_id>')
 # api.add_resource(SpecificListingAPI, '/getListing/<int:num>')
 api.add_resource(AmenitiesAPI, '/getAmenities')
 api.add_resource(AccessibilitiesAPI, '/getAccessibilities')
