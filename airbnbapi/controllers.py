@@ -1,4 +1,4 @@
-import json, requests, pprint, time
+import json, requests, pprint, time, re
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -100,6 +100,30 @@ def get_listings(args):
             counter += 1
 
     return listings, 200
+
+
+def get_coordinates(listing_id):
+    attempts = 0
+    success = False
+
+    # Sometimes request doesn't have the lat long, this gives it 10 attempts to try to get it
+    while not success and attempts < 10:
+        try:
+            URL = 'https://www.airbnb.com/rooms/' + str(listing_id)
+            r = requests.get(URL)
+            p_lat = re.compile(r'"lat":([-0-9.]+),')
+            p_lng = re.compile(r'"lng":([-0-9.]+),')
+            lat = p_lat.findall(r.text)[0]
+            lng = p_lng.findall(r.text)[0]
+            success = True # Found the lat and long, stop looping
+
+            return {'latitude': lat, 'longitude': lng}, 200
+
+        except:
+            # Except is usually page loaded without coordinates so we will retry
+            attempts += 1
+
+    return {'Unable to get the coordinates'}, 400
 
 
 def get_amenities():

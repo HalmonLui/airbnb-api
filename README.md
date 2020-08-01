@@ -126,6 +126,22 @@ Warning: Using this application may be against Airbnb's terms of services.
   ]
 ```
 
+## Get Listing Coordinates by ID
+
+### Request
+
+`Get /getListingCoordinates/<listing_id>`
+
+    curl -X GET 'http://localhost:5000/getListingCoordinates/17974950'
+
+### Response
+```json
+{
+    "latitude": "42.3766",
+    "longitude": "-71.03634"
+}
+```
+
 ## Get Deep Listings
 
 ### Request
